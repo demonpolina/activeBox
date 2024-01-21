@@ -4,9 +4,12 @@
 
 .header{
     margin-bottom: 116px;
-    background: url('/src/images/bannerBg.png');
     background-size: cover;
     background-position: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
 
     @media only screen and (max-width: 1024px){
         margin-bottom: 78px;
@@ -24,15 +27,13 @@
         display: flex;
         justify-content: space-between;
         position: relative;
-        height: 100px;
         align-items: center;
-        margin-bottom: 130px;
 
         @media only screen and (max-width: 1024px){
             margin-bottom: 157px;
         }
         @media only screen and (max-width: 767px){
-            height: 56px;
+            padding: 22px;
             margin-bottom: 50px;
         }
 
@@ -43,8 +44,7 @@
             bottom: 0px;
             left: 50%;
             transform: translateX(-50%);
-            max-width: 1170px;
-            width: 100%;
+            width: calc(100% - 30px);
 
             @media only screen and (max-width: 1024px){
                 max-width: 984px;
@@ -60,7 +60,7 @@
     &__logo {
         display: flex;
     
-        & svg {
+        svg {
           width: 184px;
           height: 27px;
 
@@ -78,16 +78,14 @@
         @media only screen and (max-width: 767px) {
           display: flex;
           align-items: center;
+          border: none;
+          background: transparent;
         }
       }
 }
 
 .nav{
-    max-width: 670px;
 
-    @media only screen and (max-width: 1024px){
-        max-width: 566px;
-    }
     @media only screen and (max-width: 767px){
         display: none;
     }
@@ -95,22 +93,28 @@
     &__list{
         display: flex;
 
+        @media only screen and (max-width: 835px){
+            column-gap: 20px;
+        }
+
         &-elem{
-            display:block;
-            width: 134px;
+            min-width: 134px;
             text-align: center;
 
             @media only screen and (max-width: 1024px){
-                max-width: 119px;
+                min-width: 119px;
+            }
+            @media only screen and (max-width: 835px){
+                min-width: auto;
             }
         }
     }
 
     &__link{
         @include fontRaleway(13px, 700, 16.26px, $white);
-        height: 28px;
         padding: 36px 0;
-        border-bottom: 3px solid $transparent;
+        border-bottom: 3px solid transparent;
+        display: block;
 
         @media only screen and (max-width: 1024px){
             @include fontRaleway(12px, 700, 14.09px, $white);   
@@ -129,23 +133,34 @@
     }
 }
 
+//banner
+
 .banner{
     padding-bottom: 120px;
+    padding-top: 230px;
     text-align: center;
     margin-bottom: 116px;
+    background: url('/src/images/bannerBg.png');
 
     @media only screen and (max-width: 1024px){
         padding-bottom: 126px;   
-        margin-bottom: 78px;    
+        margin-bottom: 78px;   
+        padding-top: 257px; 
     }
     @media only screen and (max-width: 767px){
+        padding-top: 106px;
         padding-bottom: 52px;
         margin-bottom: 40px;
+    }
+
+    &__container{
+        @include container;
     }
 
     &__title{
         @include fontRaleway(64px, 900, 75.14px, $white);
         margin-bottom: 31.43px;
+        text-transform: uppercase;
 
         @media only screen and (max-width: 1024px){
             @include fontRaleway(48px, 900, 56.35px, $white);
@@ -160,7 +175,8 @@
 
     &__descr{
         @include fontRaleway(24px, 400, 28.18px, $white);
-        margin-bottom: 79.57px;
+        margin: 0 auto 79.57px;
+        max-width: 1000px;
 
         @media only screen and (max-width: 1024px){
             @include fontRaleway(18px, 400, 21.13px, $white);
@@ -176,17 +192,17 @@
     &__button{
         max-width: 370px;
         width: 100%;
-        height: 80px;
+        padding: 26px 0;
         background-color: $red;
         border: none;
+        text-transform: uppercase;
         @include fontRaleway(24px, 900, 28.18px, $white);
 
         @media only screen and (max-width: 1024px){
             max-width: 314px;   
         }
         @media only screen and (max-width: 767px){
-            max-width: 280px;
-            height: 60px;
+            max-width: 100%;
         }
 
         &:hover{
