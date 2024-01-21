@@ -14,8 +14,7 @@
   "author": "Polina Ryabtsevich",
   "license": "ISC",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.11.0",
-    "sass": "^1.69.7"
+    "@parcel/transformer-sass": "^2.11.0"
   },
   "dependencies": {
     "parcel": "^2.11.0"
