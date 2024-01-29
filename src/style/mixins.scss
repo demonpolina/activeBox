@@ -6,7 +6,7 @@
     font-family: 'Raleway', sans-serif;
 }
 
-@mixin Cardo( $fontSize, $fontWeight, $lineHeight, $color) {
+@mixin fontCardo( $fontSize, $fontWeight, $lineHeight, $color) {
     color: $color;
     font-size: $fontSize;
     font-weight: $fontWeight;

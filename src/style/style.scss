@@ -10,6 +10,18 @@
     left: 0;
     top: 0;
     width: 100%;
+    z-index: 2;
+
+    &.scrolled {
+        background-color: $background-color;
+        .header__container::after {
+          width: 0;
+        }
+        .header__link {
+          padding: 20px 0;
+        }
+      
+      }
 
     @media only screen and (max-width: 1024px){
         margin-bottom: 78px;
@@ -75,19 +87,95 @@
 
     &__toggle-menu {
         display: none;
+        z-index: 2;
+        width: 24px;
+        height: 18px;
+        position: relative;
+
         @media only screen and (max-width: 767px) {
-          display: flex;
-          align-items: center;
-          border: none;
-          background: transparent;
-        }
+        position: fixed;
+        right: 34.53px;
+        display: flex;
+        align-items: center;
+        border: none;
+        background: transparent;
+    }
+
+    &::before {
+      content: "";
+      display: block;
+      width: 100%;
+      border-bottom: 3px solid $white;
+      position: absolute;
+      left: 0;
+      top: 0;
+      transition: all .3s linear;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      border-bottom: 3px solid $white;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      transition: all .3s linear;
+    }
+
+    &.open {
+      .header__toogle-item {
+        width: 0;
       }
+
+
+      &::after {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+      &::before {
+        transform: rotate(45deg) translate(5.8px, 5.8px);
+      }
+    }
+  }
+  &__toogle-item {
+    border-bottom: 3px solid $white;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    transition: all .3s linear;
+  }
 }
+
 
 .nav{
 
     @media only screen and (max-width: 767px){
-        display: none;
+        position: fixed;
+      background: url(/src/images/bannerBg.png) center / cover;
+      width: 100%;
+      height: 100vh;
+      padding: 107px 20px;
+      top: 0;
+      left: 100%;
+      transition: left .3s linear;
+      z-index: 1;
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.8;
+        background-color: $background-color;
+      }
+
+      &.open {
+        left: 0%;
+      }
     }
     
     &__list{
@@ -111,6 +199,8 @@
     }
 
     &__link{
+        transition: all .3s linear;
+        z-index: 2;
         @include fontRaleway(13px, 700, 16.26px, $white);
         padding: 36px 0;
         border-bottom: 3px solid transparent;
@@ -118,6 +208,19 @@
 
         @media only screen and (max-width: 1024px){
             @include fontRaleway(12px, 700, 14.09px, $white);   
+        }
+
+        @media only screen and (max-width: 850px) {
+            min-width: 100px;
+        }
+        
+        @media only screen and (max-width: 767px) {
+            text-align: left;
+            padding-bottom: 5px;
+            font-size: 13px;
+            line-height: 15px;
+            border-bottom: 3px solid transparent;
+            display: inline;
         }
 
         &:hover{
@@ -128,8 +231,6 @@
             color: $btnHoverRed;
             border-bottom: 3px solid $btnHoverRed;
         }
-
-
     }
 }
 
@@ -197,6 +298,7 @@
         border: none;
         text-transform: uppercase;
         @include fontRaleway(24px, 900, 28.18px, $white);
+        transition: all .3s linear;
 
         @media only screen and (max-width: 1024px){
             max-width: 314px;   
@@ -215,3 +317,723 @@
         }
     }
 }
+
+//features
+
+.features {
+    margin-bottom: 134px;
+    scroll-margin-top: 57px;
+    @media only screen and (max-width: 1024px) {
+      margin-bottom: 81px;
+    }
+    @media only screen and (max-width: 767px) {
+      margin-bottom: 37px;
+    }
+  
+    &__container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 31px;
+      row-gap: 87px;
+      @media only screen and (max-width: 1024px) {
+        column-gap: 20px;
+        row-gap: 49px;
+      }
+      @media only screen and (max-width: 767px) {
+        grid-template-columns: repeat(1, 1fr);
+        row-gap: 43px;
+      }
+    }
+  }
+  
+  .feature {
+    text-align: center;
+
+    &__container{
+        @include container;
+    }
+  
+    &__wrapper-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100px;
+      height: 100px;
+      margin-bottom: 51px;
+      @media only screen and (max-width: 1024px) {
+        margin-bottom: 43.5px;
+        width: 85px;
+        height: 85px;
+      }
+      @media only screen and (max-width: 767px) {
+        margin-bottom: 37px;
+        width: 75px;
+        height: 75px;
+      }
+  
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  
+    &__title {
+      @include fontRaleway(24px, 900, 28.18px, $titleBlack);
+      text-transform: uppercase;
+      margin-bottom: 43px;
+
+        @media only screen and (max-width: 1024px) {
+            margin-bottom: 24px;
+            font-size: 18px;
+            line-height: 21.13px;
+        }
+     
+        @media only screen and (max-width: 767px) {
+            margin-bottom: 8px;
+        }
+    }
+  
+    &__description {
+        @include fontRaleway(18px, 400, 21.13px, $descrBlack);
+
+        @media only screen and (max-width: 1024px) {
+            font-size: 14px;
+            line-height: 16px;
+        }
+    }
+}
+
+//work
+
+.work {
+    display: grid;
+    max-width: 100%;
+    padding: 0;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-bottom: 116px;
+    scroll-margin-top: 57px;
+
+    @media only screen and (max-width: 1024px) {
+      margin-bottom: 80.11px;
+    }
+
+    @media only screen and (max-width: 767px) {
+      grid-template-columns: repeat(2, 1fr);
+      margin-bottom: 34.85px;
+    }
+  }
+  
+  .project {
+    position: relative;
+    aspect-ratio: 378/338;
+  
+    &__wrapper-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  
+    &__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  
+    &__info {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: all .3s linear;
+
+      &:hover {
+            opacity: 1;
+            background: $workNover;
+        }
+
+      &:active {
+            opacity: 1;
+            background: $workActive;
+        }
+    }
+  
+    &__title {
+      @include fontRaleway(24px, 900, 28.18px, $white);
+      text-transform: uppercase;
+      margin-bottom: 40px;
+
+      @media only screen and (max-width: 1024px) {
+            margin-bottom: 24px;
+            font-size: 18px;
+            line-height: 21px;
+        }
+
+      @media only screen and (max-width: 767px) {
+            margin-bottom: 8px;
+        }
+    }
+  
+    &__description {
+      @include fontRaleway(24px, 400, 21.13px, $white);
+
+      @media only screen and (max-width: 1024px) {
+            font-size: 14px;
+            line-height: 16px;
+        }
+
+      @media only screen and (max-width: 767px) {
+          margin-bottom: 0;
+        }
+    }
+}
+
+//team
+
+.team {
+    margin-bottom: 114px;
+    scroll-margin-top: 57px;
+
+    @media only screen and (max-width: 1024px) {
+      margin-bottom: 78.41px;
+    }
+
+    @media only screen and (max-width: 767px) {
+      margin-bottom: 34.39px;
+    }
+  
+    &__container {
+
+        @include container;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 30px;
+
+        @media only screen and (max-width: 1024px) {
+          column-gap: 25px;
+        }
+        @media only screen and (max-width: 767px) {
+            row-gap: 49px;
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+  }
+  
+.member {
+    &__wrapper-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        aspect-ratio: 1/1;
+        margin-bottom: 30px;
+
+        @media only screen and (max-width: 1024px) {
+            margin-bottom: 27px;
+            aspect-ratio: 1/1;
+        }
+
+        @media only screen and (max-width: 767px) {
+            margin-bottom: 28px;
+            aspect-ratio: 280/227;
+        }
+    }
+
+    &__image {
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+        height: 100%;
+    }
+  
+    &__name {
+        @include fontRaleway(24px, 700, 28.18px, $titleBlack);
+        margin-bottom: 5.29px;
+        text-transform: capitalize;
+
+        @media only screen and (max-width: 1024px) {
+            margin-bottom: 7px;
+            font-size: 18px;
+            line-height: 21px;
+        }
+    }
+  
+    &__position {
+        @include fontRaleway(18px, 400, 21.13px, $red);
+        margin-bottom: 17.86px;
+        text-transform: uppercase;
+
+        @media only screen and (max-width: 1024px) {
+            margin-bottom: 22.45px;
+            font-size: 14px;
+            line-height: 16px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            margin-bottom: 38.49px;
+        }
+    }
+  
+    &__description {
+        @include fontRaleway(18px, 400, 21.13px, $descrBlack);
+        margin-bottom: 38px;
+
+        @media only screen and (max-width: 1024px) {
+            margin-bottom: 39.2px;
+            font-size: 14px;
+            line-height: 16px;
+        }
+         
+        @media only screen and (max-width: 767px) {
+            margin-bottom: 55.15px;
+        }
+    }
+}
+
+.social {
+    display: flex;
+    column-gap: 5.5px;
+
+    @media only screen and (max-width: 1024px) {
+      column-gap: 5.05px;
+    }
+
+    @media only screen and (max-width: 767px) {
+      column-gap: 6.09px;
+    }
+  
+    &__wrapper-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 39px;
+        height: 39px;
+        border: 1px solid $iconGray;
+        transition: all .3s linear;
+
+        @media only screen and (max-width: 1024px) {
+            width: 32.8px;
+            height: 32.8px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            width: 39.6px;
+            height: 39.6px;
+        }
+
+        &:hover {
+            border: 1px solid $workNover;
+
+            path {
+                fill: $workNover;
+            }
+        }
+    
+        &:active {
+            border: 1px solid $workActive;
+
+            path {
+                fill: $workActive;
+            }
+        }
+        
+        svg path {
+            transition: all .3s linear;
+        }
+    }
+}
+
+//testimonials
+
+.testimonials {
+    scroll-margin-top: 57px;
+    margin-bottom: 120px;
+
+    @media only screen and (max-width: 1024px) {
+        margin-bottom: 82px;
+    }
+    
+    @media only screen and (max-width: 767px) {
+        margin-bottom: 41px;
+    }
+    
+    &__swiper-wrapper {
+        margin-bottom: 57px;
+
+        @media only screen and (max-width: 1024px) {
+            margin-bottom: 45px;
+        }
+    }
+
+    &__slide {
+        background-color: $testimonialsBg;
+        display: grid;
+        max-width: 100%;
+        grid-template-columns: repeat(2, 1fr);
+
+        @media only screen and (max-width: 767px) {
+        grid-template-columns: repeat(1, 1fr);
+        }
+    }
+
+    &__wrapper-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    &__image {
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: absolute;
+
+        @media only screen and (max-width: 767px) {
+            aspect-ratio: 4 / 2.65;
+            position: static;
+        }
+    }
+
+    &__slide-info {
+        padding: 134px 170px 122px 114px;
+
+        @media only screen and (max-width: 1024px) {
+            padding: 62px 133px 112px 78px;
+        }
+
+        @media only screen and (max-width: 850px) {
+            padding: 62px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            padding: 24px 25px 100px 20px;
+        }
+    }
+
+    &__slide-quote {
+        @include fontCardo(36px, 400, 48.74px, $white);
+        text-transform: capitalize;
+        font-style: italic;
+        margin-bottom: 24px;
+
+        @media only screen and (max-width: 1024px) {
+            @include fontCardo(24px, 400, 32.5px, $white);
+            margin-bottom: 16px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            text-align: center; 
+            margin-bottom: 28px;
+        }
+    }
+
+    &__slide-person {
+        @include fontRaleway( 13px, 700, 15.26px, $white);
+        text-transform: uppercase;
+
+        @media only screen and (max-width: 1024px) {
+            @include fontRaleway(12px, 700, 14.09px, $white);
+        }
+    }
+}
+//erftghjkjhgfdsasdfghujikokijhgfdsdfghjikoplkjhgfdsaSDFGHJKLKJHGFD
+.swiper-pagination-bullet {
+    border-radius: 14px;
+    border: 1px solid $testimonials-btn-color;
+    width: 14px;
+    height: 14px;
+    background: none;
+    opacity: 1;
+    margin: 0 12.5px;
+    transition: all 0.2s linear;
+
+    @media only screen and (max-width: 1024px) {
+        width: 9.488px;
+        height: 9.488px;
+    }
+
+    &:hover {
+        border: 1px solid $btnHoverRed;
+        background: $btnHoverRed;
+    }
+
+    &:active {
+        background: $testimonials-background-color;
+    }
+}
+
+.swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+    margin: 0 12.5px;
+
+    @media only screen and (max-width: 767px) {
+        margin: 0 10.4px;
+    }
+}
+
+.swiper-pagination-bullet-active {
+    background: $testimonials-btn-color;
+    border: 1px solid $testimonials-btn-color
+}
+
+//download
+
+.download {
+    margin: 0 auto 113.5px;
+    scroll-margin-top: 57px;
+
+    @media only screen and (max-width: 1024px) {
+        margin-bottom: 76px;
+    }
+
+    @media only screen and (max-width: 767px) {
+        margin-bottom: 45px;
+    }
+    
+    &__container {
+        text-align: center;
+    }
+    
+    &__text {
+        @include fontRaleway(30px, 500, 35.22px, $downloadColorText);
+        margin-bottom: 23px;
+
+        @media only screen and (max-width: 1024px) {
+            font-size: 24px;
+            line-height: 28px;
+            margin-bottom: 22px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            font-size: 18px;
+            line-height: 21px;
+            margin-bottom: 22px;
+        }
+    }
+    
+    &__description {
+        @include fontRaleway(18px, 700, 21.13px, $downloadColorText);
+        margin-bottom: 48px;
+        text-transform: uppercase;
+
+        @media only screen and (max-width: 1024px) {
+            font-size: 14px;
+            line-height: 16px;
+            margin-bottom: 43.29px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            font-size: 13px;
+            line-height: 15px;
+            margin-bottom: 11px;
+        }
+    }
+
+    &__button {
+
+        max-width: 370px;
+        width: 100%;
+        padding: 26px 0;
+        background-color: $red;
+        border: none;
+        text-transform: uppercase;
+        @include fontRaleway(24px, 900, 28.18px, $white);
+        transition: all .3s linear;
+
+        @media only screen and (max-width: 1024px){
+            max-width: 314px; 
+            font-size: 18px;
+            line-height: 21px;
+            padding: 29px;  
+        }
+        @media only screen and (max-width: 767px){
+            max-width: 100%;
+        }
+
+        &:hover{
+            background-color: $btnHoverRed;
+        }
+
+        &:active{
+            box-shadow: $btnShadow;
+            background-color: $red;
+        }
+    }
+}
+
+//footer
+
+.footer {
+    text-align: center;
+  
+    &__wrapper-info {
+        background-color: $blue;
+        padding: 70px 0;
+
+        @media only screen and (max-width: 1024px) {
+            padding: 46.59px 0 41.19px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            padding: 34.14px 0;
+        }
+    }
+  
+    &__info {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 30px;
+
+        @media only screen and (max-width: 1024px) {
+            column-gap: 20px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            display: block;
+        }
+    }
+  
+    &__location {
+        @media only screen and (max-width: 767px) {
+            margin-bottom: 69.24px;
+        }
+  
+        &-title {
+            @include fontRaleway(18px, 700, 21.13px, $white);
+            margin-bottom: 29px;
+            text-transform: uppercase;
+
+            @media only screen and (max-width: 1024px) {
+                font-size: 14px;
+                line-height: 16px;
+                margin-bottom: 17.72px;
+            }
+
+            @media only screen and (max-width: 767px) {
+                margin-bottom: 33px;
+            }
+        }
+    
+      &-description {
+        @include fontRaleway(18px, 400, 21.13px, $white);
+        
+        @media only screen and (max-width: 1024px) {
+          font-size: 14px;
+          line-height: 16px;
+        }
+      }
+    }
+  
+    &__social {
+        @media only screen and (max-width: 767px) {
+            margin-bottom: 59.05px;
+        }
+
+        &-title {
+            @include fontRaleway(18px, 700, 21.13px, $white);
+            margin-bottom: 48.86px;
+            text-transform: uppercase;
+
+            @media only screen and (max-width: 1024px) {
+                font-size: 14px;
+                line-height: 16px;
+                margin-bottom: 32.51px;
+            }
+            @media only screen and (max-width: 767px) {
+                margin-bottom: 36.71px;
+            }
+        }
+    
+        &-container {
+            column-gap: 27px;
+            justify-content: center;
+
+            @media only screen and (max-width: 1024px) {
+                column-gap: 23px;
+            }
+
+            @media only screen and (max-width: 767px) {
+                column-gap: 16.77px;
+            }
+        }
+        
+        &-wrapper-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            @media only screen and (max-width: 1024px) {
+                width: 33px;
+                height: 33px;
+            }
+        }
+    }
+  
+    &__about {
+      &-title {
+            @include fontRaleway(18px, 700, 21.13px, $white);
+            margin-bottom: 29px;
+            text-transform: uppercase;
+
+            @media only screen and (max-width: 1024px) {
+            font-size: 14px;
+            line-height: 16px;
+            margin-bottom: 15.58px;
+            }
+            
+            @media only screen and (max-width: 767px) {
+            margin-bottom: 38.71px;
+            }
+        }
+    
+      &-description {
+            @include fontRaleway(18px, 400, 21.13px, $white);
+
+            @media only screen and (max-width: 1024px) {
+                font-size: 14px;
+                line-height: 16px;
+            }
+        }
+    }
+  
+    &__wrapper-copy {
+        background-color: $darkBlue;
+        padding: 24px 0;
+        
+        @media only screen and (max-width: 1024px) {
+            padding: 14px 0 15px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            padding: 29.86px 0 28.14px;
+        }
+    }
+  
+    &__copy {
+        @include fontRaleway(18px, 400, 21.13px, $footerGray);
+        max-width: 400px;
+        margin: 0 auto;
+
+        @media only screen and (max-width: 1024px) {
+            font-size: 14px;
+            line-height: 16px;
+        }
+        
+        &-highlight {
+            color: $white;
+        }
+    }
+  }
