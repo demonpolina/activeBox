@@ -3,9 +3,6 @@
 @import 'vars';
 
 .header{
-    margin-bottom: 116px;
-    background-size: cover;
-    background-position: center;
     position: fixed;
     left: 0;
     top: 0;
@@ -61,11 +58,6 @@
             @media only screen and (max-width: 1024px){
                 max-width: 984px;
             }
-            @media only screen and (max-width: 767px){
-                border-top: 1px solid $workActive;
-                max-width: 767px;
-            }
-
         }
     }
 

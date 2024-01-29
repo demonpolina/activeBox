@@ -23,10 +23,7 @@ button {
 
 .header {
   z-index: 2;
-  background-position: center;
-  background-size: cover;
   width: 100%;
-  margin-bottom: 116px;
   position: fixed;
   top: 0;
   left: 0;
@@ -103,13 +100,6 @@ button {
 @media only screen and (width <= 1024px) {
   .header__wrapper:after {
     max-width: 984px;
-  }
-}
-
-@media only screen and (width <= 767px) {
-  .header__wrapper:after {
-    border-top: 1px solid #b90c0ccc;
-    max-width: 767px;
   }
 }
 
